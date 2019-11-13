@@ -1,0 +1,28 @@
+package com.bridgelabz.apigateway.config;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
+
+import springfox.documentation.swagger.web.SwaggerResource;
+import springfox.documentation.swagger.web.SwaggerResourcesProvider;
+
+@Primary
+@EnableAutoConfiguration
+@Configuration
+public class DocumentationController implements SwaggerResourcesProvider {
+
+	@Override
+	public List<SwaggerResource> get() {
+		List resources = new ArrayList();
+        resources.add(SwaggerResource("account-service", "/api/account/v2/api-docs", "2.0"));
+        resources.add(swaggerResource("customer-service", "/api/customer/v2/api-docs", "2.0"));
+        resources.add(swaggerResource("product-service", "/api/product/v2/api-docs", "2.0"));
+        resources.add(swaggerResource("transfer-service", "/api/transfer/v2/api-docs", "2.0"));
+        return resources;
+	}
+
+}

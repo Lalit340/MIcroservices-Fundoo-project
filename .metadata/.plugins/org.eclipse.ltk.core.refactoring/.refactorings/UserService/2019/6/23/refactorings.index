@@ -1,0 +1,27 @@
+1559820560306	Rename package 'com.bridgelabz.user'
+1559820574705	Rename package 'com.bridgelabz.user.model'
+1559820592551	Rename package 'com.bridgelabz.user'
+1559823205366	Rename type 'Exception'
+1559825677385	Rename package 'com.bridgelabz.fundoo.user.config'
+1559826111339	Move compilation unit
+1559901521422	Copy package
+1559902012227	Rename package 'com.bridgelabz.fundoo'
+1559902034307	Rename package 'com.bridgelabz.fundoo.user'
+1559902068650	Rename package 'com.bridgelabz.fundoo.config'
+1559902090237	Rename package 'com.bridgelabz.fundoo.exception'
+1559902123680	Rename package 'com.bridgelabz.fundoo.exceptionhandler'
+1559902138871	Rename package 'com.bridgelabz.fundoo.response'
+1559902152894	Rename package 'com.bridgelabz.fundoo.user.controller'
+1559902168865	Rename package 'com.bridgelabz.fundoo.user.dto'
+1559902175908	Rename package 'com.bridgelabz.fundoo.user.model'
+1559902185287	Rename package 'com.bridgelabz.fundoo.user.repository'
+1559902195825	Rename package 'com.bridgelabz.fundoo.user.service'
+1559902205454	Rename package 'com.bridgelabz.fundoo.user.util'
+1559902230288	Rename package 'com.bridgelabz.user.util'
+1559902355218	Copy compilation unit
+1559906605986	Copy compilation unit
+1559906656173	Copy compilation unit
+1559906674573	Copy package
+1559906714384	Copy compilation unit
+1559907132420	Copy file
+1559907140898	Copy file

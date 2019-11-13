@@ -1,0 +1,31 @@
+package com.bridgelabz.user.service;
+
+import com.bridgelabz.response.LoginResponse;
+import com.bridgelabz.response.Response;
+import com.bridgelabz.user.dto.ForgotDto;
+import com.bridgelabz.user.dto.LoginDto;
+import com.bridgelabz.user.dto.RegisterDto;
+import com.bridgelabz.user.dto.ResetDto;
+
+public interface IUserService {
+	
+	/**
+	 * Purpose : Method to register
+	 * @param registerDto
+	 * @return
+	 */
+	public Response register(RegisterDto registerDto);
+
+	public Response validateEmail(String token);
+	
+	/**
+	 * Purpose : Method to login
+	 * @param loginDto
+	 * @return
+	 */
+	public LoginResponse login(LoginDto loginDto);
+	
+	public Response forgotPassword(ForgotDto forgotDto);
+
+	public Response resetPassword(ResetDto resetDto,String token);
+}

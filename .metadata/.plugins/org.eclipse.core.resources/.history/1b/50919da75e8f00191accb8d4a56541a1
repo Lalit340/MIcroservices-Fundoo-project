@@ -1,0 +1,163 @@
+package com.bridgelabz.note.controller;
+
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.bridgelabz.note.dto.CreateDto;
+import com.bridgelabz.note.dto.UpdateDto;
+import com.bridgelabz.note.model.Note;
+import com.bridgelabz.note.service.INoteService;
+import com.bridgelabz.response.Response;
+
+/**
+ * Purpose : Note controller class 
+ * @author : Tasif Mohammed
+ *
+ */
+@RestController
+@RequestMapping("/note")
+public class NoteController {
+
+	@Autowired
+	private INoteService noteService;
+
+	/**
+	 * Purpose : Function for creating notes
+	 * @param request
+	 * @param token
+	 * @param createDto
+	 * @return
+	 */
+	@PostMapping
+	public ResponseEntity<Response> createNote(HttpServletRequest request, @RequestHeader String token,
+			@RequestBody CreateDto createDto) {
+		long userId = Long.parseLong(request.getAttribute("userId").toString());
+		Response statusResponse = noteService.createNote(createDto, userId);
+		return new ResponseEntity<Response>(statusResponse, HttpStatus.OK);
+	}
+
+	/**
+	 * Purpose : Function for updating notes
+	 * @param request
+	 * @param token
+	 * @param updateDto
+	 * @param noteId
+	 * @return
+	 */
+	@PutMapping("/{noteId}")
+	public ResponseEntity<Response> updateNote(HttpServletRequest request, @RequestHeader String token,
+			@RequestBody UpdateDto updateDto, @PathVariable long noteId) {
+		long userId = Long.parseLong(request.getAttribute("userId").toString());
+		Response statusResponse = noteService.updateNote(updateDto, userId, noteId);
+		return new ResponseEntity<Response>(statusResponse, HttpStatus.OK);
+	}
+
+	/**
+	 * Purpose : Function for deleting notes
+	 * @param request
+	 * @param token
+	 * @param noteId
+	 * @return
+	 */
+	@DeleteMapping("/{noteId}")
+	public ResponseEntity<Response> deleteNote(HttpServletRequest request, @RequestHeader String token,
+			@PathVariable long noteId) {
+		long userId = Long.parseLong(request.getAttribute("userId").toString());
+		Response statusResponse = noteService.deleteNote(userId, noteId);
+		return new ResponseEntity<Response>(statusResponse, HttpStatus.OK);
+	}
+
+	/**
+	 * Purpose : Function to get single note
+	 * @param request
+	 * @param token
+	 * @param noteId
+	 * @return
+	 */
+	@GetMapping("/{noteId}")
+	public ResponseEntity<Note> getSingleNote(HttpServletRequest request, @RequestHeader String token,
+			@PathVariable long noteId) {
+		long userId = Long.parseLong(request.getAttribute("userId").toString());
+		Note note = noteService.getSingleNoteFromRedis(userId, noteId);
+		return new ResponseEntity<Note>(note, HttpStatus.FOUND);
+	}
+
+	/**
+	 * Purpose : Function to get all notes
+	 * @param request
+	 * @param token
+	 * @param isPin
+	 * @param isTrash
+	 * @param isArchive
+	 * @return
+	 */
+	@GetMapping
+	public List<Note> getAllNotes(HttpServletRequest request, @RequestHeader String token, @RequestParam boolean isPin,
+			@RequestParam boolean isTrash, @RequestParam boolean isArchive) {
+		long userId = Long.parseLong(request.getAttribute("userId").toString());
+		List<Note> listNotes = noteService.getAllNote(userId, isPin, isTrash, isArchive);
+		return listNotes;
+	}
+
+	/**
+	 * Purpose : Function to pin or unpin notes 
+	 * @param request
+	 * @param token
+	 * @param noteId
+	 * @return
+	 */
+	@PutMapping("/pinandunpin")
+	public ResponseEntity<Response> pinAndUnpin(HttpServletRequest request, @RequestHeader String token,
+			@RequestParam long noteId) {
+		long userId = Long.parseLong(request.getAttribute("userId").toString());
+		Response statusResponse = noteService.pinAndUnPin(userId, noteId);
+		return new ResponseEntity<Response>(statusResponse, HttpStatus.OK);
+	}
+
+	@PutMapping("/trashanduntrash")
+	public ResponseEntity<Response> trashAndUntrash(HttpServletRequest request, @RequestHeader String token,
+			@RequestParam long noteId) {
+		long userId = Long.parseLong(request.getAttribute("userId").toString());
+		Response statusResponse = noteService.trashAndUntrash(userId, noteId);
+		return new ResponseEntity<Response>(statusResponse, HttpStatus.OK);
+	}
+
+	@PutMapping("/archiveandunarchive")
+	public ResponseEntity<Response> archiveAndUnarchive(HttpServletRequest request, @RequestHeader String token,
+			@RequestParam long noteId) {
+		long userId = Long.parseLong(request.getAttribute("userId").toString());
+		Response statusResponse = noteService.archiveAndUnarchive(userId, noteId);
+		return new ResponseEntity<Response>(statusResponse, HttpStatus.OK);
+	}
+
+	@PutMapping("/addreminder")
+	public ResponseEntity<Response> addReminder(HttpServletRequest request, @RequestHeader String token,
+			@RequestParam long noteId, @RequestBody String time) {
+		long userId = Long.parseLong(request.getAttribute("userId").toString());
+		Response statusResponse = noteService.addReminder(userId, noteId, time);
+		return new ResponseEntity<Response>(statusResponse, HttpStatus.OK);
+	}
+
+	@PutMapping("/removeremainder")
+	public ResponseEntity<Response> removeRemainder(HttpServletRequest request, @RequestHeader String token,
+			@RequestParam long noteId) {
+		long userId = Long.parseLong(request.getAttribute("userId").toString());
+		Response statusResponse = noteService.removeReminder(userId, noteId);
+		return new ResponseEntity<Response>(statusResponse, HttpStatus.OK);
+	}
+}

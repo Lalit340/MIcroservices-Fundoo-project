@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;SwaggerConfig.java&apos; to &apos;ApiGateWay/src/main/java/com.bridgelabz.apigateway.config&apos;&#x0A;- Original project: &apos;UserService&apos;&#x0A;- Destination element: &apos;ApiGateWay/src/main/java/com.bridgelabz.apigateway.config&apos;&#x0A;- Original element: &apos;com.bridgelabz.config.SwaggerConfig.java&apos;" description="Copy compilation unit" destination="=ApiGateWay/src\/main\/java&lt;com.bridgelabz.apigateway.config" element1="/src\/main\/java&lt;com.bridgelabz.config{SwaggerConfig.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1561008186886" units="1" version="1.0"/>
+</session>

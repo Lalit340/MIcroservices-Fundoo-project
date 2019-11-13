@@ -1,0 +1,12 @@
+# ============================== #
+# 		    Application    		 #
+# ============================== #
+
+server.port=8080
+spring.application.name=API-Gateway
+
+# ============================== #
+# 		     Eureka     		 #
+# ============================== #
+
+eureka.client.eureka-server-port=8761

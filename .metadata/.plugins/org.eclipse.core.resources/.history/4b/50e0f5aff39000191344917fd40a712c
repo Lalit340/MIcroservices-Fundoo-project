@@ -1,0 +1,23 @@
+# ============================== #
+# 		    Application    		 #
+# ============================== #
+
+server.port=8080
+spring.application.name=API-Gateway
+
+# ============================== #
+# 		     Eureka     		 #
+# ============================== #
+
+eureka.client.eureka-server-port=8761
+eureka.client.registerWithEureka=false
+eureka.client.fetchRegistry=true
+
+# ============================== #
+# 		  Service-Mapping     	 #
+# ============================== #
+
+zuul.routes.userservice.path=/user/**
+zuul.routes.userservice.serviceId=userservice
+zuul.routes.noteservice.path=/note/**
+zuul.routes.noteservice.serviceId=noteservice

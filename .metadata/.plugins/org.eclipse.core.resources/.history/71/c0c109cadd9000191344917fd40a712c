@@ -1,0 +1,5 @@
+package com.bridgelabz.apigateway.filter;
+
+public class SimpleFilter {
+
+}
